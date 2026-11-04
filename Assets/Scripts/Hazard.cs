@@ -7,6 +7,7 @@ public class Hazard : MonoBehaviour
     [SerializeField] float knockback = 6f;
     [SerializeField] float restTime = 0f, warnTime = 0.7f, strikeTime = 0.4f;
     [SerializeField] GameObject warning;
+    [SerializeField] HitFeedback feedback = HitFeedback.Squash;
     IEnumerator Start()
     {
         if (restTime <= 0f) yield break;
@@ -24,6 +25,7 @@ public class Hazard : MonoBehaviour
     void OnTriggerStay(Collider other)
     {
         if (!other.TryGetComponent(out Health health) || !health.TakeDamage(damage)) return;
+	if (other.TryGetComponent(out PlayerJuice juice)) juice.Play(feedback);
         Rigidbody body = other.attachedRigidbody;
         if (body == null) return;
         Vector3 away = body.position - transform.position; away.y = 0f;
