@@ -1,16 +1,20 @@
 using UnityEngine;
 
+public enum PowerUpType { Speed, Shield }
+
 public class PowerUp : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] PowerUpType type = PowerUpType.Speed;
+    [SerializeField] float multiplier = 1.6f;
+    [SerializeField] float duration = 5f;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
+        if (!other.CompareTag("Player")) return;
+        if (type == PowerUpType.Speed)
+            other.GetComponent<PlayerController>().BoostSpeed(multiplier, duration);
+        else
+            other.GetComponent<Health>().shielded = true;
+        Destroy(gameObject);
     }
 }

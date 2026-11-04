@@ -1970,8 +1970,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3220483, y: 0.005680285, z: -0.0019327326, w: 0.94670427}
-  m_LocalPosition: {x: -1.4180648, y: 10.936467, z: -11.712218}
+  m_LocalRotation: {x: 0.44385645, y: 0.001344265, z: -0.000667252, w: 0.8960967}
+  m_LocalPosition: {x: -1.2983195, y: 22.250233, z: -14.448583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12990,9 +12990,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
   coinPrefab: {fileID: 8578887418569821318, guid: 645fc83af73430f4ca19b85c87592eaf, type: 3}
+  powerUpPrefabs:
+  - {fileID: 5268821889717305474, guid: e4d800c188befab4b96be7244ab9c3f2, type: 3}
+  - {fileID: 6860410570823738879, guid: 26ba64ff5ccf79b4783040c04cc4d391, type: 3}
   player: {fileID: 333307259}
   interval: 1.5
   maxCoins: 5
+  coinsPerPowerUp: 3
+  powerUpLifetime: 10
+  powerUpHeight: 0
+  powerUpMargin: 1
   area: {x: 7.5, y: 9.5}
   spawnHeight: 0.75
 --- !u!1 &2025411430
