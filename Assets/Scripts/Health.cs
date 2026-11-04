@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
         invulnerableUntil = Time.time + iFrames;
         if (shielded) { shielded = false; return false; }
         current -= amount;
-        GameManager.Instance.UpdateUI();
+	if (GameManager.Instance != null) GameManager.Instance.UpdateUI();
         if (current <= 0) GameManager.Instance.PlayerDied();
         return true;
     }
