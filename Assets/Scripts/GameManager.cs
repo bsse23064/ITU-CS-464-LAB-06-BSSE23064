@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text scoreText, livesText;
     [SerializeField] GameObject winPanel, losePanel;
     [SerializeField] GameObject nextLevelButton;   // optional: hidden automatically on the last level
+
+    [Header("Locked final coin (optional)")]
+    [SerializeField] GameObject finalCoin;         // leave it disabled in the scene; it appears once enough coins are collected
+    [SerializeField] int coinsToUnlock = 3;
     int score;
 
     void Awake() => Instance = this;
@@ -22,6 +26,7 @@ public class GameManager : MonoBehaviour
     {
         score += amount;
         UpdateUI();
+        if (finalCoin != null && score >= coinsToUnlock) finalCoin.SetActive(true);
         if (score >= targetScore) Win();
     }
 

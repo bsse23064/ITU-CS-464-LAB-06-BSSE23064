@@ -8,6 +8,10 @@ public class Hazard : MonoBehaviour
     [SerializeField] float restTime = 0f, warnTime = 0.7f, strikeTime = 0.4f;
     [SerializeField] GameObject warning;
     [SerializeField] HitFeedback feedback = HitFeedback.Squash;
+    public float RestTime => restTime; 
+    public float WarnTime => warnTime;
+    public float StrikeTime => strikeTime;
+    public GameObject Warning => warning;
     IEnumerator Start()
     {
         if (restTime <= 0f) yield break;
