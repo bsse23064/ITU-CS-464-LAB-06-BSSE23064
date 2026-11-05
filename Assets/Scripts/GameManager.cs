@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform respawnPoint;
     [SerializeField] TMP_Text scoreText, livesText;
     [SerializeField] GameObject winPanel, losePanel;
+    [SerializeField] GameObject nextLevelButton;   // optional: hidden automatically on the last level
     int score;
 
     void Awake() => Instance = this;
@@ -48,12 +49,29 @@ public class GameManager : MonoBehaviour
         player.Restore(spawnProtection);
     }
 
-    void Win() { winPanel.SetActive(true); Time.timeScale = 0f; }
+    void Win()
+    {
+        // No scene after this one in the build list = last level, so hide the Next Level button
+        if (nextLevelButton != null)
+            nextLevelButton.SetActive(SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings);
+
+        winPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
     void Lose() { losePanel.SetActive(true); Time.timeScale = 0f; }
 
     public void Restart()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void NextLevel()
+    {
+        Time.timeScale = 1f;   // Win() froze time, and it survives a scene load
+        int next = SceneManager.GetActiveScene().buildIndex + 1;
+        if (next < SceneManager.sceneCountInBuildSettings) SceneManager.LoadScene(next);
+        else SceneManager.LoadScene(0);   // finished the last level: back to the first
     }
 }

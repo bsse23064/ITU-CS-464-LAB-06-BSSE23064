@@ -511,8 +511,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hazard
   damage: 1
-  knockback: 6
+  knockback: 12
   restTime: 0
   warnTime: 0.7
   strikeTime: 0.4
   warning: {fileID: 0}
+  feedback: 1
